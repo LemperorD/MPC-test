@@ -30,7 +30,6 @@
 
 则系统方程最终可提取为如下内容：
 
-```math
 $$\begin{cases}
 (I+mL^2)\ddot{\theta}
 =
@@ -48,7 +47,6 @@ k\dot{y}
 =
 F.
 \end{cases}$$
-```
 
 > 推导过程详见assets
 
