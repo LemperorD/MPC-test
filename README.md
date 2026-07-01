@@ -30,7 +30,9 @@
 
 则系统方程最终可提取为如下内容：
 
-$$\begin{cases}
+```math
+$$
+\begin{cases}
 (I+mL^2)\ddot{\theta}
 =
 mgL\sin\theta
@@ -46,7 +48,9 @@ mL\sin\theta\,\dot{\theta}^{2}
 k\dot{y}
 =
 F.
-\end{cases}$$
+\end{cases}
+$$
+```
 
 > 推导过程详见assets
 
