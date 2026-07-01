@@ -6,7 +6,7 @@
 
 考虑如下图所示的平面倒立摆系统。摆杆的支点固定于可以水平移动的小车上。
 
-![alt text](assets/image.png)
+![alt text](assets/images/cart-pole.png)
 
 设：
 
