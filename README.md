@@ -57,3 +57,34 @@ $$
 ## 2. 具体任务
 
 使用acados实现MPC控制算法，最终实现对倒立摆系统的镇定控制，要求**最终生成的可执行程序为C/C++生成**
+
+## 3. 项目架构
+
+```bash
+├── assets                         # 静态资源
+│   ├── 推导过程
+│   │   ├── cart-pole.md           # 基于刚体动力学推导一阶倒立摆
+│   │   └── lagrange.md            # 基于拉格朗日方程推导一阶倒立摆
+│   └── images
+│       └── cart-pole.png
+├── bin                            # 存放可执行二进制文件
+├── build                          # 存放构建文件
+├── CMakeLists.txt
+├── config
+│   └── cart_pole.yaml             # 参数
+├── include
+│   └── pid_cart_pole
+│       ├── cart_pole.hpp          # 一阶倒立摆模型
+│       ├── config_loader.hpp      # 参数加载工具
+│       └── pid_controller.hpp     # pid控制器
+├── README.md
+├── README.pdf
+├── scripts
+│   └── build.sh                   # 构建、编译脚本
+└── src
+    └── pid_cart_pole
+        ├── cart_pole.cpp
+        ├── config_loader.cpp
+        ├── opencv_cart_pole_demo.cpp
+        └── pid_controller.cpp
+```

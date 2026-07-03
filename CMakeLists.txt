@@ -11,7 +11,6 @@ add_compile_options(-Wno-unused-variable -Wno-unused-but-set-variable)
 # ── 依赖 ──
 find_package(Eigen3 REQUIRED)
 find_package(yaml-cpp REQUIRED)
-find_package(Pangolin REQUIRED)
 find_package(OpenCV REQUIRED)
 
 # ──────────────────────────────────────────
