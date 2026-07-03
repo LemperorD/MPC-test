@@ -293,24 +293,8 @@ int main(int argc, char * argv[])
     if (!paused) {
       t = step_idx * dt;
 
-      // ── Cascaded PID ──
-      //
-      // Inner (always active): theta → force
-      //   u = -inner_pid.step(theta_ref, theta)
-      //
-      // Outer (y → theta_ref): disabled by default.
-      //   To enable, set USE_OUTER_LOOP=1 and tune sign convention.
-      //   Linearized A(3,1) > 0 means theta>0 → cart accel>0 (rightward).
-      //   So y>0 (cart right) → need theta_ref<0 (lean left):
-      //     theta_ref = outer_pid.step(0, y)   when Kp>0 gives P<0 for y>0.
-#define USE_OUTER_LOOP 0
-
-#if USE_OUTER_LOOP
+      // 级联 PID 控制
       theta_ref = outer_pid.step(0.0, x(0));
-      // theta_ref is implicitly clamped by outer_pid.out_min/out_max
-#else
-      theta_ref = 0.0;
-#endif
       u = -inner_pid.step(theta_ref, x(1));
 
       // 记录

@@ -11,8 +11,8 @@ model:
   g: 9.81
 
 initial_state:
-  y: 0.0
-  theta_deg: 5.0   # pole initial angle [deg]
+  y: 0.5
+  theta_deg: 30.0   # pole initial angle [deg]
   dy: 0.0
   dtheta: 0.0
 
@@ -24,17 +24,17 @@ controller:
   #   y>0 → need θ_ref<0 (lean left → cart pushed rightward back to 0).
   #   outer: err=0-y<0, Kp>0 → θ_ref = P < 0 ✓
   outer_pid:
-    Kp: 3.0
-    Ki: 0.2
-    Kd: 2.0
-    out_min: -0.2    # max tilt [rad]
-    out_max: 0.2
-    int_max: 0.15
+    Kp: 0.5
+    Ki: 0.0
+    Kd: 0.5
+    out_min: -9    # max tilt [rad]
+    out_max: 9
+    int_max: 0.9
 
   # Inner: theta → force.  u = -inner_pid.step(theta_ref, theta)
   inner_pid:
-    Kp: 150.0
-    Ki: 8.0
+    Kp: 100.0
+    Ki: 0.0
     Kd: 30.0
     out_min: -150.0
     out_max: 150.0
