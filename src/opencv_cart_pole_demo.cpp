@@ -295,6 +295,7 @@ int main(int argc, char * argv[])
 
       // 级联 PID 控制
       theta_ref = outer_pid.step(0.0, x(0));
+      // theta_ref = 0.0;
       u = -inner_pid.step(theta_ref, x(1));
 
       // 记录
