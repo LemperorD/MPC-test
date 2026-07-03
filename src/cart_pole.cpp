@@ -12,8 +12,8 @@ CartPoleModel::CartPoleModel(double M_c, double m_p, double L, double I,
                              double k, double g)
   : M_c_(M_c), m_p_(m_p), L_(L), I_(I), k_(k), g_(g)
 {
-  if (M_c <= 0 || m_p <= 0 || L <= 0 || I < 0)
-    throw std::invalid_argument("CartPoleModel: 参数必须为正（I 可为 0）。");
+  if (M_c <= 0 || m_p <= 0 || L <= 0 || I <= 0)
+    throw std::invalid_argument("CartPoleModel: 参数必须为正。");
 }
 
 // ──────────────────────────────────────────────

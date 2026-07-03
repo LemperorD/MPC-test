@@ -5,6 +5,7 @@ set -e
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 PROJECT_DIR="$(dirname "$SCRIPT_DIR")"
 BUILD_DIR="$PROJECT_DIR/build"
+BIN_DIR="$PROJECT_DIR/bin"
 
 mkdir -p "$BUILD_DIR"
 cd "$BUILD_DIR"
@@ -15,5 +16,5 @@ make -j$(nproc)
 echo ""
 echo "=========================================="
 echo "  Build succeeded!"
-echo "  Run:  $BUILD_DIR/pid_cart_pole_demo"
+echo "  Run:  $BIN_DIR/pid_cart_pole_demo"
 echo "=========================================="
