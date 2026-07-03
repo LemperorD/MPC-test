@@ -20,17 +20,18 @@ controller:
   dt: 0.01
   sim_time: 10.0
 
-  # Outer: y → theta_ref.  theta_ref = -outer_pid.step(0, y)
-  #   y>0 → need lean RIGHT (θ_ref>0) → push cart LEFT.
+  # Outer: y → theta_ref.
+  #   y>0 → need θ_ref<0 (lean left → cart pushed rightward back to 0).
+  #   outer: err=0-y<0, Kp>0 → θ_ref = P < 0 ✓
   outer_pid:
-    Kp: 2.0
-    Ki: 0.1
-    Kd: 4.0
-    out_min: -0.15    # smaller tilt → less destabilizing
-    out_max: 0.15
-    int_max: 0.1
+    Kp: 3.0
+    Ki: 0.2
+    Kd: 2.0
+    out_min: -0.2    # max tilt [rad]
+    out_max: 0.2
+    int_max: 0.15
 
-  # Inner: theta → F.  u = -inner_pid.step(theta_ref, theta)
+  # Inner: theta → force.  u = -inner_pid.step(theta_ref, theta)
   inner_pid:
     Kp: 150.0
     Ki: 8.0

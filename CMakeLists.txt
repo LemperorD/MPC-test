@@ -12,6 +12,7 @@ add_compile_options(-Wno-unused-variable -Wno-unused-but-set-variable)
 find_package(Eigen3 REQUIRED)
 find_package(yaml-cpp REQUIRED)
 find_package(Pangolin REQUIRED)
+find_package(OpenCV REQUIRED)
 
 # ──────────────────────────────────────────
 # 核心库 — 倒立摆动力学
@@ -46,39 +47,21 @@ target_link_libraries(config_loader PUBLIC
 )
 
 # ──────────────────────────────────────────
-# 终端 ASCII PID 演示 (保留, 向后兼容)
+# OpenCV 可视化 PID 演示 (Cascaded PID)
 # ──────────────────────────────────────────
-add_executable(pid_cart_pole_demo
-  src/pid_cart_pole_demo.cpp
+add_executable(opencv_cart_pole_demo
+  src/opencv_cart_pole_demo.cpp
 )
-target_link_libraries(pid_cart_pole_demo
-  cart_pole
-  pid_controller
-)
-target_include_directories(pid_cart_pole_demo PRIVATE
-  include
-  ${EIGEN3_INCLUDE_DIR}
-)
-set_target_properties(pid_cart_pole_demo PROPERTIES
-    RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/../bin
-)
-
-# ──────────────────────────────────────────
-# Pangolin 可视化 PID 演示 (Cascaded PID)
-# ──────────────────────────────────────────
-add_executable(pangolin_cart_pole_demo
-  src/pangolin_cart_pole_demo.cpp
-)
-target_link_libraries(pangolin_cart_pole_demo
+target_link_libraries(opencv_cart_pole_demo
   cart_pole
   pid_controller
   config_loader
-  ${Pangolin_LIBRARIES}
+  ${OpenCV_LIBS}
 )
-target_include_directories(pangolin_cart_pole_demo PRIVATE
+target_include_directories(opencv_cart_pole_demo PRIVATE
   include
   ${EIGEN3_INCLUDE_DIR}
 )
-set_target_properties(pangolin_cart_pole_demo PROPERTIES
+set_target_properties(opencv_cart_pole_demo PROPERTIES
     RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/../bin
 )
