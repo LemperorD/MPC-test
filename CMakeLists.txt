@@ -18,10 +18,10 @@ find_package(OpenCV REQUIRED)
 # 核心库 — 倒立摆动力学
 # ──────────────────────────────────────────
 add_library(cart_pole STATIC
-  src/cart_pole.cpp
+  src/pid_cart_pole/cart_pole.cpp
 )
 target_include_directories(cart_pole PUBLIC
-  include
+  include/pid_cart_pole/
   ${EIGEN3_INCLUDE_DIR}
 )
 
@@ -29,18 +29,18 @@ target_include_directories(cart_pole PUBLIC
 # PID 控制器库
 # ──────────────────────────────────────────
 add_library(pid_controller STATIC
-  src/pid_controller.cpp
+  src/pid_cart_pole/pid_controller.cpp
 )
-target_include_directories(pid_controller PUBLIC include)
+target_include_directories(pid_controller PUBLIC include/pid_cart_pole/)
 
 # ──────────────────────────────────────────
 # YAML 配置加载库
 # ──────────────────────────────────────────
 add_library(config_loader STATIC
-  src/config_loader.cpp
+  src/pid_cart_pole/config_loader.cpp
 )
 target_include_directories(config_loader PUBLIC
-  include
+  include/pid_cart_pole
 )
 target_link_libraries(config_loader PUBLIC
   yaml-cpp
@@ -50,7 +50,7 @@ target_link_libraries(config_loader PUBLIC
 # OpenCV 可视化 PID 演示 (Cascaded PID)
 # ──────────────────────────────────────────
 add_executable(opencv_cart_pole_demo
-  src/opencv_cart_pole_demo.cpp
+  src/pid_cart_pole/opencv_cart_pole_demo.cpp
 )
 target_link_libraries(opencv_cart_pole_demo
   cart_pole
@@ -59,7 +59,7 @@ target_link_libraries(opencv_cart_pole_demo
   ${OpenCV_LIBS}
 )
 target_include_directories(opencv_cart_pole_demo PRIVATE
-  include
+  include/pid_cart_pole
   ${EIGEN3_INCLUDE_DIR}
 )
 set_target_properties(opencv_cart_pole_demo PROPERTIES
